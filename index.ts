@@ -1,10 +1,6 @@
 const fs = require("fs");
 
-const rawData = fs.readFileSync("./test/project-atomic.interface.ts", "utf-8");
-
-console.log(rawData);
-
-export const getSecuenceArray = (rawData: string) => {
+export const customSplit = (rawData: string) => {
   const specialCharacters = ["{", "}", ";", ":"];
 
   let currentWord = "";
@@ -38,7 +34,3 @@ export const getSecuenceArray = (rawData: string) => {
 
   return secuenceArray;
 };
-
-const secuenceArray = getSecuenceArray(rawData);
-
-console.log("this is secuence array: ", secuenceArray);

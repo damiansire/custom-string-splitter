@@ -1,4 +1,4 @@
-import { getSecuenceArray } from "./index";
+import { customSplit } from "./index";
 import { describe, test, expect } from "@jest/globals";
 
 const rawData = `export interface Task {
@@ -6,7 +6,7 @@ const rawData = `export interface Task {
   description: string;
 }`;
 
-describe("getSecuenceArray", () => {
+describe("customSplit", () => {
   test("should split the raw data into an array of strings", () => {
     const expectedOutput = [
       "export",
@@ -23,7 +23,7 @@ describe("getSecuenceArray", () => {
       ";",
       "}",
     ];
-    const result = getSecuenceArray(rawData);
+    const result = customSplit(rawData);
     expect(result).toEqual(expectedOutput);
   });
 });
