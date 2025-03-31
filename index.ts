@@ -24,12 +24,16 @@ const fs = require("fs"); // Importamos el módulo de sistema de archivos
  *
  * @throws {TypeError} Si rawData no es una cadena o specialCharacters no es un array.
  */
-export const customSplit = (rawData: string, specialCharacters: string[]) => {
+export const customSplit = (
+  rawData: string,
+  options: { specialCharacters?: string[]; specialCharactersRegex?: string[] }
+) => {
   let secuenceArray: string[] = []; // Array que almacenará los tokens resultantes
   let currentWord = ""; // Variable para ir construyendo el token actual
   let inDoubleQuoteString = false; // Bandera para identificar si estamos dentro de comillas dobles
   let inSingleQuoteString = false; // Bandera para identificar si estamos dentro de comillas simples
-
+  const specialCharacters = options.specialCharacters;
+  const specialCharactersRegex = options.specialCharactersRegex;
   // Recorremos cada carácter del input
   for (let i = 0; i < rawData.length; i++) {
     const char = rawData[i]; // Carácter actual
