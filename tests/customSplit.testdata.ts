@@ -1,4 +1,5 @@
 export const testCases = [
+  { input: "console.log('Hello, world!')", expectedOutput: ["console.log", "(", "'Hello, world!'", ")"] },
   {
     input: `export interface Task { title: string; description: string; }`,
     expectedOutput: [
