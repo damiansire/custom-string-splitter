@@ -1,29 +1,14 @@
 import { customSplit } from "./index";
 import { describe, test, expect } from "@jest/globals";
-
-const rawData = `export interface Task {
-  title: string;
-  description: string;
-}`;
+import { testCases } from "./tests/customSplit.testdata.ts";
 
 describe("customSplit", () => {
-  test("should split the raw data into an array of strings", () => {
-    const expectedOutput = [
-      "export",
-      "interface",
-      "Task",
-      "{",
-      "title",
-      ":",
-      "string",
-      ";",
-      "description",
-      ":",
-      "string",
-      ";",
-      "}",
-    ];
-    const result = customSplit(rawData);
-    expect(result).toEqual(expectedOutput);
+  describe("should split code string into tokens", () => {
+    testCases.forEach(({ input, expectedOutput }) => {
+      test(`should split '${input}' into tokens correctly`, () => {
+        const result = customSplit(input);
+        expect(result).toEqual(expectedOutput);
+      });
+    });
   });
 });
