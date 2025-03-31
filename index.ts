@@ -6,15 +6,23 @@ const fs = require("fs"); // Importamos el módulo de sistema de archivos
  *
  * @param {string} rawData - La cadena de texto a dividir.
  * @param {string[]} specialCharacters - Un array de caracteres especiales que se usarán como separadores.
- * @returns {string[]} Un array de tokens resultantes.
+ * @returns {string[]} Un array de tokens resultantes, donde cada token es una palabra, un carácter especial, o una cadena entre comillas.
  *
  * @example
- * customSplit('console.log("Hello, world!")', ['{', '}', ';', ':', ',', '[', ']', '(', ')', '=', '+']);
- * // Devuelve: ['console.log', '(', '"Hello, world!"', ')']
+ * // Ejemplo 1: División de una llamada a console.log
+ * // Entrada:
+ * // customSplit('console.log("Hello, world!")', ['{', '}', ';', ':', ',', '[', ']', '(', ')', '=', '+']);
+ * // Salida esperada:
+ * // ['console.log', '(', '"Hello, world!"', ')']
  *
  * @example
- * customSplit("const myString = 'This is a test'", ['{', '}', ';', ':', ',', '[', ']', '(', ')', '=', '+']);
- * // Devuelve: ['const', 'myString', '=', "'This is a test'"]
+ * // Ejemplo 2: División de una asignación de cadena
+ * // Entrada:
+ * // customSplit("const myString = 'This is a test'", ['{', '}', ';', ':', ',', '[', ']', '(', ')', '=', '+']);
+ * // Salida esperada:
+ * // ['const', 'myString', '=', "'This is a test'"]
+ *
+ * @throws {TypeError} Si rawData no es una cadena o specialCharacters no es un array.
  */
 export const customSplit = (rawData: string, specialCharacters: string[]) => {
   let secuenceArray: string[] = []; // Array que almacenará los tokens resultantes
@@ -27,7 +35,7 @@ export const customSplit = (rawData: string, specialCharacters: string[]) => {
     const char = rawData[i]; // Carácter actual
 
     // Detectamos si el carácter actual es una comilla doble que no está escapada
-    if (char === '"' && (i === 0 || rawData[i - 1] !== "\\") && !inSingleQuoteString) {
+    if (char === '"' && !inSingleQuoteString && (i === 0 || rawData[i - 1] !== "\\")) {
       if (!inDoubleQuoteString) {
         // Si no estábamos dentro de un string con comillas dobles, este es el inicio de uno
         if (currentWord.length > 0) {
@@ -46,7 +54,7 @@ export const customSplit = (rawData: string, specialCharacters: string[]) => {
       }
     }
     // Detectamos si el carácter actual es una comilla simple que no está escapada
-    else if (char === "'" && (i === 0 || rawData[i - 1] !== "\\") && !inDoubleQuoteString) {
+    else if (char === "'" && !inDoubleQuoteString && (i === 0 || rawData[i - 1] !== "\\")) {
       if (!inSingleQuoteString) {
         // Si no estábamos dentro de un string con comillas simples, este es el inicio de uno
         if (currentWord.length > 0) {
