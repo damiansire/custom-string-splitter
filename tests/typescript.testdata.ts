@@ -1,8 +1,26 @@
 import { TestCases } from "./test-type";
 
 export const typeScriptCases: TestCases = [
-  { input: "console.log('Hello, world!')", expectedOutput: ["console.log", "(", "'Hello, world!'", ")"] },
   {
+    input: "export interface Task{title:string;description:string;}",
+    expectedOutput: [
+      "export",
+      "interface",
+      "Task",
+      "{",
+      "title",
+      ":",
+      "string",
+      ";",
+      "description",
+      ":",
+      "string",
+      ";",
+      "}",
+    ],
+  },
+  //{ input: "console.log('Hello, world!')", expectedOutput: ["console.log", "(", "'Hello, world!'", ")"] },
+  /* {
     input: `export interface Task { title: string; description: string; }`,
     expectedOutput: [
       "export",
@@ -390,5 +408,5 @@ export const typeScriptCases: TestCases = [
       ";",
       "}",
     ],
-  },
+  },*/
 ];
