@@ -1,7 +1,8 @@
 export interface CustomSplitOptions {
   breakCharacters?: string[];
-  breakCharactersRegex?: string[];
+  breakWords?: string[];
   ignoreCharacters?: string[];
+  ignoreWords?: string[];
 }
 
 export interface IterationData {

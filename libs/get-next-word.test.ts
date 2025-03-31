@@ -6,8 +6,9 @@ describe("getNextWord -> Typescript test", () => {
   describe("get the next word", () => {
     const options = {
       breakCharacters: ["{", "}", ";", ":", ",", "=", "+", "(", ")", ".", " "],
-      breakCharactersRegex: [],
-      ignoreCharacters: [],
+      breakWords: [],
+      ignoreCharacters: ["\n", "\t", " "],
+      ignoreWords: [],
     };
 
     const rawData = typescriptTestCases.rawData;
@@ -15,7 +16,7 @@ describe("getNextWord -> Typescript test", () => {
     typescriptTestCases.cases.forEach(({ index, word, endIndex }) => {
       test(`should get '${word}' from index ${index} to ${endIndex}`, () => {
         const result = getNextWord(rawData, options, index);
-        expect(result).toEqual(endIndex);
+        expect({ endWordIndex: endIndex, word: word }).toEqual(result);
       });
     });
   });
