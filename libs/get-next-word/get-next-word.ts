@@ -1,7 +1,13 @@
-import { CustomSplitOptions, IterationData } from "../types";
+import { CustomSplitOptions, IterationData } from "../../types";
 
 export const getNextWord = (rawData: string, options: CustomSplitOptions, currentIndex: number): IterationData => {
-  const { breakCharacters = [], breakWords = [], ignoreCharacters = [], ignoreWords = [] } = options;
+  const {
+    breakCharacters = [],
+    breakWords = [],
+    ignoreCharacters = [],
+    ignoreWords = [],
+    customRules: [],
+  } = options;
   let currentWord = "";
 
   while (ignoreCharacters.includes(rawData[currentIndex])) {

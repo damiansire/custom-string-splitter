@@ -10,6 +10,12 @@ describe("getNextWord -> Typescript test", () => {
         breakWords: [],
         ignoreCharacters: ["\n", "\t", " "],
         ignoreWords: [],
+        customRules: [
+          {
+            open: '"',
+            closed: ['"'],
+          },
+        ],
       };
 
       const rawData = testCase.rawData;
