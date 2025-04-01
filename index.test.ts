@@ -1,27 +1,33 @@
 import { describe, test, expect } from "@jest/globals";
 import { typeScriptCases } from "./tests/typescript.testdata";
 import { htmlTestCases } from "./tests/html.testdata";
+import { customSplit } from ".";
 
 describe("customSplit", () => {
-  it("should split a simple HTML string into tags and content", () => {
-    expect(1).toEqual(1);
-  });
-});
+  describe("should split Typescript code string into tokens", () => {
+    const options = {
+      breakCharacters: ["{", "}", ";", ":", ",", "=", "+", "(", ")", ".", " "],
+      breakWords: [],
+      ignoreCharacters: ["\n", "\t", " "],
+      ignoreWords: [],
+      customRules: [
+        {
+          open: '"',
+          closed: ['"'],
+        },
+      ],
+    };
 
-/*
-describe("customSplit", () => {
-  describe("should split code string into tokens", () => {
-    const breakCharacters = ["{", "}", ";", ":", ",", "=", "+", "(", ")", ".", " "];
     typeScriptCases.forEach(({ input, expectedOutput }) => {
       test(`should split '${input}' into tokens correctly`, () => {
-        const result = customSplit(input, { breakCharacters });
+        const result = customSplit(input, options);
         expect(result).toEqual(expectedOutput);
       });
     });
   });
 });
-*/
-/*
+
+/* HTML
 describe("customSplit", () => {
   // Casos de prueba
   it("should split a simple HTML string into tags and content", () => {
