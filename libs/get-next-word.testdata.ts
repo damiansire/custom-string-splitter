@@ -1,6 +1,3 @@
-import { CustomSplitOptions, IterationData } from "../types";
-import { TestCases } from "./test-type";
-
 interface GetNextWordTestCase {
   index: number;
   word: string;

@@ -1,5 +1,5 @@
 import { describe, test, expect } from "@jest/globals";
-import { typescriptTestCases } from "../tests/get-next-word.testdata";
+import { typescriptTestCases } from "./get-next-word.testdata";
 import { getNextWord } from "./get-next-word";
 
 describe("getNextWord -> Typescript test", () => {
