@@ -6,7 +6,7 @@ import { customSplit } from ".";
 describe("customSplit", () => {
   describe("should split Typescript code string into tokens", () => {
     const options = {
-      breakCharacters: ["{", "}", ";", ":", ",", "=", "+", "(", ")", ".", " "],
+      breakCharacters: ["{", "}", ";", ":", ",", "=", "+", "(", ")", ".", " ", "[", "]"],
       breakWords: [],
       ignoreCharacters: ["\n", "\t", " "],
       ignoreWords: [],
@@ -14,6 +14,10 @@ describe("customSplit", () => {
         {
           open: '"',
           closed: ['"'],
+        },
+        {
+          open: "'",
+          closed: ["'"],
         },
       ],
     };
